@@ -5,7 +5,6 @@ using UnityEngine;
 //класс представляет все ору
 public class Weapon : MonoBehaviour, IWeapon
 {
-
     public Transform shootPoint;
     public Transform prefab;
 
@@ -28,6 +27,7 @@ public class Weapon : MonoBehaviour, IWeapon
             Debug.Log("fire");    
 
             Shoot();
+            bulletsPerMag--;
         }
     }
     private void Shoot()

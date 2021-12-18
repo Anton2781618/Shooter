@@ -7,8 +7,7 @@ public class Player : MonoBehaviour
 {
     //руки игрока в них может быть все что можно удерживать  
     private Iholding heands;
-    public MedicalKit med;
-    
+
     private void Start() 
     {
 
@@ -23,7 +22,7 @@ public class Player : MonoBehaviour
 
     private void InputSystem()
     {
-        if(Input.GetButton("Fire1"))
+        if(Input.GetKey(KeyCode.Mouse0))
         {
             heands.Use();
         }

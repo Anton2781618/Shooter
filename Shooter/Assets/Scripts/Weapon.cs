@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //класс представляет все ору
-public class Weapon : MonoBehaviour, IWeapon
+public class Weapon : MonoBehaviour, Iholding, IFirearms
 {
+    [Header("Настройки оружия")]
     //точка вспышки
     [SerializeField] private Transform shootPoint;
     [SerializeField] private ParticleSystem muzzleFlash;
+    
+    [SerializeField] private GameObject Bullethols;
 
-    [SerializeField] private Transform prefab;
     [SerializeField] private List <AudioClip> sounds = new List<AudioClip>(); 
 
     //скорость стрельбы
     [SerializeField] private float fireRate;
+    [SerializeField] private Text Lable;
 
     //патронов в магазине
     public int bulletsPerMag = 200;
@@ -24,13 +28,15 @@ public class Weapon : MonoBehaviour, IWeapon
     private AudioSource audioSource; 
 
     private float nextTimeToFire = 0f;
-    public bool isReload = true;
+    public bool isReload = true;   
+    
 
     private void Start() 
     {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-    }
+        ShowAmmo();
+    }   
 
     public void Fire()
     {
@@ -52,34 +58,25 @@ public class Weapon : MonoBehaviour, IWeapon
     {
         audioSource.PlayOneShot(sounds[0]);
         currentBullets--;
+        ShowAmmo();
         muzzleFlash.Play();
+        muzzleFlash.transform.Rotate(Random.Range(-50,50), 0, 0);
         anim.CrossFadeInFixedTime("Fire", 0.1f);        
 
         RaycastHit hit;
         if(Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 100f))
         {
-            Instantiate(prefab.gameObject, hit.point, Quaternion.identity);
+            // GameObject HitParticleEffect = Instantiate(prefab.gameObject, hit.point, hit.normal);
+            GameObject HitParticleEffect = Instantiate(Bullethols.gameObject, hit.point,
+            
+            Quaternion.FromToRotation(Vector3.forward, hit.normal));
+            
         }
     }
 
-    public void GiveAway()
+    private void ShowAmmo()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void Hit()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Inspect()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Modify()
-    {
-        throw new System.NotImplementedException();
+        Lable.text = currentBullets.ToString() + " / " + bulletsLeft.ToString();
     }
 
     public void Reload()
@@ -102,7 +99,7 @@ public class Weapon : MonoBehaviour, IWeapon
 
         bulletsLeft -= bulletsToDeduct;
         currentBullets += bulletsToDeduct;
-
+        ShowAmmo();
         isReload = true;
     }
 
@@ -114,5 +111,10 @@ public class Weapon : MonoBehaviour, IWeapon
     public void Use()
     {
         Fire();
+    }
+
+    public void Take()
+    {
+        throw new System.NotImplementedException();
     }
 }

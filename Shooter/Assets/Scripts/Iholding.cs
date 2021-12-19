@@ -8,18 +8,10 @@ public interface Iholding
     //использовать
     void Use();
 
+    //поднять
+    void Take();
+
     //выбросить
     void Throw();
-    
-    //отдать
-    void GiveAway();
 
-    //ударить
-    void Hit();
-
-    //модифицировать
-    void Modify();
-
-    //осмотреть
-    void Inspect();
 }

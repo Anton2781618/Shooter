@@ -4,22 +4,7 @@ using UnityEngine;
 
 public class MedicalKit : MonoBehaviour, Iholding
 {
-    public void GiveAway()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Hit()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Inspect()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Modify()
+    public void Take()
     {
         throw new System.NotImplementedException();
     }

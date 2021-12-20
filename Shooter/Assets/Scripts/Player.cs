@@ -27,6 +27,18 @@ public class Player : MonoBehaviour
             heands.Use();
         }
 
+        if(Input.GetKey(KeyCode.Mouse1))
+        {
+            Weapon weapon = (Weapon)heands;
+            weapon.Aim();
+        }
+        else
+        {
+            Weapon weapon = (Weapon)heands;
+            weapon.NoAim();
+        }
+         
+
         if(Input.GetKeyDown(KeyCode.R) && heands is Weapon)
         {
             Weapon weapon = (Weapon)heands;

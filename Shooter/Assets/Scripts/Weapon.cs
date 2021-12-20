@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,11 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
 
     //скорость стрельбы
     [SerializeField] private float fireRate;
-    [SerializeField] private Text Lable;
+    [SerializeField] private TextMeshProUGUI Lable;
+
+    [Header("Настройки прицелевания")]
+    private Vector3 origPosition;
+    [SerializeField] private Vector3 AimPosition;
 
     //патронов в магазине
     public int bulletsPerMag = 200;
@@ -29,10 +34,11 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
 
     private float nextTimeToFire = 0f;
     public bool isReload = true;   
-    
 
     private void Start() 
     {
+        origPosition = transform.localPosition;
+
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         ShowAmmo();
@@ -45,7 +51,6 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
         if(currentBullets > 0)
         {
             Shoot();
-            
         }
         else
         {
@@ -72,6 +77,19 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
             Quaternion.FromToRotation(Vector3.forward, hit.normal));
             
         }
+    }
+//-0.123 0.125
+    public WeaponSway weaponSway;
+    public void Aim()
+    {
+        weaponSway.enabled = false;
+        transform.localPosition = Vector3.Lerp(transform.localPosition, AimPosition, Time.deltaTime * 10);
+    }
+
+    public void NoAim()
+    {
+        weaponSway.enabled = true;
+        transform.localPosition = Vector3.Lerp(transform.localPosition, origPosition, Time.deltaTime * 10);
     }
 
     private void ShowAmmo()

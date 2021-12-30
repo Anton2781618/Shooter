@@ -7,49 +7,54 @@ using UnityEngine.UI;
 //класс представляет все ору
 public class Weapon : MonoBehaviour, Iholding, IFirearms
 {
+    
     [Header("Настройки оружия")]
     //точка вспышки
     [SerializeField] private Transform shootPoint;
-    [SerializeField] private ParticleSystem muzzleFlash;
-    
+    [SerializeField] private ParticleSystem muzzleFlash;    
     [SerializeField] private GameObject Bullethols;
-
-    [SerializeField] private List <AudioClip> sounds = new List<AudioClip>(); 
-
     //скорость стрельбы
     [SerializeField] private float fireRate;
-    [SerializeField] private TextMeshProUGUI Lable;
+    
 
     [Header("Настройки прицелевания")]
-    private Vector3 origPosition;
-    [SerializeField] private Vector3 AimPosition;
+    private WeaponAim weaponAim;
+    [SerializeField] private Vector3 aimPosition;
 
-    //патронов в магазине
-    public int bulletsPerMag = 200;
-    public int currentBullets = 30;
-    public int bulletsLeft;
-    
-    private Animator anim; 
+    [Header("Настройки звука")]
+    [SerializeField] private List <AudioClip> sounds = new List<AudioClip>();
+
+    [Header("Настройки UI")]
+    [SerializeField] private TextMeshProUGUI Lable;
+
+    private WeaponSway weaponSway;
+    [SerializeField] private WeaponClip weaponClip;
+
+    private Animator animator; 
     private AudioSource audioSource; 
 
     private float nextTimeToFire = 0f;
-    public bool isReload = true;   
+    private bool isReload = false;   
 
-    private void Start() 
+    private void Awake() 
     {
-        origPosition = transform.localPosition;
+        weaponAim = new WeaponAim(this, aimPosition);
+        weaponSway = GetComponent<WeaponSway>();
 
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        ShowAmmo();
-    }   
+
+        Lable.text = weaponClip.ShowAmmo();
+        Debug.Log("OnEnable");    
+    }
 
     public void Fire()
     {
-        if(Time.time < nextTimeToFire || !isReload) return;
-        
-        if(currentBullets > 0)
+        if(Time.time < nextTimeToFire || isReload) return;
+
+        if(weaponClip.GetCurrentBullets() > 0)
         {
+            
             Shoot();
         }
         else
@@ -62,68 +67,55 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
     private void Shoot()
     {
         audioSource.PlayOneShot(sounds[0]);
-        currentBullets--;
-        ShowAmmo();
+        weaponClip.SubtractAmmo();
+
+        Lable.text = weaponClip.ShowAmmo();
+        
         muzzleFlash.Play();
         muzzleFlash.transform.Rotate(Random.Range(-50,50), 0, 0);
-        anim.CrossFadeInFixedTime("Fire", 0.1f);        
+        
+        animator.CrossFadeInFixedTime("Fire", 0.1f);        
 
         RaycastHit hit;
         if(Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 100f))
         {
-            // GameObject HitParticleEffect = Instantiate(prefab.gameObject, hit.point, hit.normal);
             GameObject HitParticleEffect = Instantiate(Bullethols.gameObject, hit.point,
             
             Quaternion.FromToRotation(Vector3.forward, hit.normal));
-            
         }
     }
-//-0.123 0.125
-    public WeaponSway weaponSway;
+//-0.123 1.5 0.125
+    
     public void Aim()
     {
         weaponSway.enabled = false;
-        transform.localPosition = Vector3.Lerp(transform.localPosition, AimPosition, Time.deltaTime * 10);
-    }
-
-    public void NoAim()
-    {
+        weaponAim.Aim();
         weaponSway.enabled = true;
-        transform.localPosition = Vector3.Lerp(transform.localPosition, origPosition, Time.deltaTime * 10);
-    }
-
-    private void ShowAmmo()
-    {
-        Lable.text = currentBullets.ToString() + " / " + bulletsLeft.ToString();
     }
 
     public void Reload()
     {
-        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
 
         if(info.IsName("Reload")) return;
         audioSource.PlayOneShot(sounds[1]);
 
-        isReload = false;
-        anim.CrossFadeInFixedTime("Reload", 0.01f);
+        isReload = true;
+        animator.CrossFadeInFixedTime("Reload", 0.01f);
     }
 
     private void DoReload()
     {
-        if(bulletsLeft <= 0) return;
+        if(weaponClip.bulletsLeft <= 0) return;
 
-        int buletsToLoad = bulletsPerMag - currentBullets;
-        int bulletsToDeduct = (bulletsLeft >= buletsToLoad) ? buletsToLoad : bulletsLeft;
-
-        bulletsLeft -= bulletsToDeduct;
-        currentBullets += bulletsToDeduct;
-        ShowAmmo();
-        isReload = true;
+        weaponClip.CalculateAmmo();
+        Lable.text = weaponClip.ShowAmmo();
+        isReload = false;
     }
 
     public void Throw()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("выбросил оружие");
     }
 
     public void Use()
@@ -132,7 +124,9 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
     }
 
     public void Take()
-    {
-        throw new System.NotImplementedException();
+    {        
+        Debug.Log(animator);
+        animator.CrossFadeInFixedTime("Draw", 0.01f);
+        Debug.Log("взял оружие");
     }
 }

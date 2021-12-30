@@ -136,7 +136,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Vector
+  m_Name: Mark23
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Fire
@@ -144,19 +144,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Reload
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Draw
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -251,7 +251,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 229770723416056496, guid: 7212fd8a9f9d68944a86f291872bdeb8, type: 3}
+  m_Motion: {fileID: 229770723416056496, guid: 75b385200259b794593d91a2e575dff3, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -278,7 +278,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -3704289112126983070, guid: 7212fd8a9f9d68944a86f291872bdeb8, type: 3}
+  m_Motion: {fileID: -3704289112126983070, guid: 75b385200259b794593d91a2e575dff3, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -305,7 +305,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1893393626920919930, guid: 7212fd8a9f9d68944a86f291872bdeb8, type: 3}
+  m_Motion: {fileID: 1893393626920919930, guid: 75b385200259b794593d91a2e575dff3, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -7,12 +7,13 @@ public class Player : MonoBehaviour
 {
     //руки игрока в них может быть все что можно удерживать  
     private Iholding heands;
+    [SerializeField] private Inventory inventory;
+
 
     private void Start() 
     {
-
         heands = FindObjectOfType<Weapon>();
-        // heands = med;
+        
     }
 
     void Update()
@@ -32,17 +33,28 @@ public class Player : MonoBehaviour
             Weapon weapon = (Weapon)heands;
             weapon.Aim();
         }
-        else
-        {
-            Weapon weapon = (Weapon)heands;
-            weapon.NoAim();
-        }
-         
 
         if(Input.GetKeyDown(KeyCode.R) && heands is Weapon)
         {
             Weapon weapon = (Weapon)heands;
             weapon.Reload();
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            // heands.Take();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            heands = inventory.GetItem(0);
+            heands.Take();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            heands = inventory.GetItem(1);
+            heands.Take();
         }
     }
 }

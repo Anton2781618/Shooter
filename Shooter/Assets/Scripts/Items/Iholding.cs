@@ -14,4 +14,6 @@ public interface Iholding
     //выбросить
     void Throw();
 
+    void Sway();
+
 }

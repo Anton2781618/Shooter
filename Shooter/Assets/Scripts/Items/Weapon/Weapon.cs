@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //класс представляет все ору
-public class Weapon : MonoBehaviour, Iholding, IFirearms
+public abstract class Weapon : MonoBehaviour, Iholding, IFirearms
 {
     
     [Header("Настройки оружия")]
@@ -35,6 +35,7 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
 
     private float nextTimeToFire = 0f;
     private bool isReload = false;   
+    private RaycastHit hit;
 
     private void Awake() 
     {
@@ -45,7 +46,6 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
         audioSource = GetComponent<AudioSource>();
 
         Lable.text = weaponClip.ShowAmmo();
-        Debug.Log("OnEnable");    
     }
 
     public void Fire()
@@ -54,7 +54,6 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
 
         if(weaponClip.GetCurrentBullets() > 0)
         {
-            
             Shoot();
         }
         else
@@ -76,7 +75,7 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
         
         animator.CrossFadeInFixedTime("Fire", 0.1f);        
 
-        RaycastHit hit;
+        
         if(Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 100f))
         {
             GameObject HitParticleEffect = Instantiate(Bullethols.gameObject, hit.point,
@@ -84,7 +83,6 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
             Quaternion.FromToRotation(Vector3.forward, hit.normal));
         }
     }
-//-0.123 1.5 0.125
     
     public void Aim()
     {
@@ -125,8 +123,12 @@ public class Weapon : MonoBehaviour, Iholding, IFirearms
 
     public void Take()
     {        
-        Debug.Log(animator);
         animator.CrossFadeInFixedTime("Draw", 0.01f);
-        Debug.Log("взял оружие");
+    }
+
+    //метод сдвигает оружие для красоты
+    public void Sway()
+    {
+        weaponSway.MoveWeapon();
     }
 }

@@ -17,12 +17,7 @@ public class WeaponSway : MonoBehaviour
         initPosition = transform.localPosition;
     }
 
-    private void Update() 
-    {
-        MoveWeapon();
-    }
-
-    private void MoveWeapon()
+    public void MoveWeapon()
     {
         float movementX = -Input.GetAxis("Mouse X") * amount;
         float movementY = -Input.GetAxis("Mouse Y") * amount;

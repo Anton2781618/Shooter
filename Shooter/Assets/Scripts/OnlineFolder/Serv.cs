@@ -9,7 +9,6 @@ using System;
 public class Serv : MonoBehaviour
 {
     
-    [ContextMenu("ServTest")]
     public void ServTest()
     {
         IPHostEntry host1 = Dns.GetHostEntry("yandex.ru");
@@ -21,7 +20,6 @@ public class Serv : MonoBehaviour
         }
     }
 
-    [ContextMenu("DownloadFile")]
     public void DownloadFile()
     {
         WebClient client = new WebClient();

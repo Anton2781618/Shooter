@@ -7,19 +7,25 @@ public class Player : MonoBehaviour
 {
     public static Player playerSingleton;
 
+    public Transform point;
+    public Transform Zombie;
+    private Coroutine coroutine;
+
+    private int HP = 100;
+
+
     
-    //руки игрока в них может быть все что можно удерживать  
+    //руки игрока в них можно взять все что реализует интерфейс Iholding
     private Iholding heands;
     private IInvent inventory;
 
     private bool inventoryIsOpen;
     private WeaponSway weaponSway;
-    public LookWithMouse mouseLook;
+    private LookWithMouse mouseLook;
 
     private void Awake() 
     {
         inventory = GetComponent<IInvent>();
-        weaponSway = new WeaponSway();
 
         mouseLook = Camera.main.GetComponent<LookWithMouse>();
 
@@ -39,15 +45,26 @@ public class Player : MonoBehaviour
         heands.Take();
     }
 
+    public void PutTheInventory()
+    {
+        // heands.Hide();
+        heands = null;
+    }
+
     private void InputSystem()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            coroutine = StartCoroutine(TestCoroutine());
+        } 
+
         if(Input.GetKeyDown(KeyCode.Tab))
         {
             inventoryIsOpen = inventory.OpenCloseInventory();
             mouseLook.enabled = !mouseLook.enabled;
             Cursor.lockState = inventoryIsOpen ? CursorLockMode.Confined : CursorLockMode.Locked;
         }
-
+        
         if(Input.GetKeyDown(KeyCode.E))
         {
             CheckRay();
@@ -87,5 +104,33 @@ public class Player : MonoBehaviour
                 inventory.AddItem(hit.transform.GetComponent<ItemWorld>().Grab());
             }
         }
+    }
+
+    public void GetHit()
+    {
+        HP -= 20;
+        Debug.Log(HP);
+        if(HP <= 0 )
+        {
+            StopGame();
+        }
+    }
+
+    IEnumerator TestCoroutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(1f);
+            
+            for (int i = 0; i < 5; i++)
+            {
+                Instantiate(Zombie, point.position, Quaternion.identity);
+            }
+        }
+    }
+
+    private void StopGame()
+    {
+        StopCoroutine(coroutine); 
     }
 }

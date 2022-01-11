@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+//класс для работы с UI элементом инвентаря
+public class ItemUI : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+{
+    [SerializeField] private Item itemUI;
+    private CanvasGroup canvasGroup;
+    private RectTransform rectTransform;
+    private Transform conent;
+
+    private void Awake() 
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+        rectTransform = GetComponent<RectTransform>();
+        conent = transform.parent;
+    }
+
+    public void Initialize(Item item)
+    {
+        itemUI = item;
+        transform.GetComponent<Image>().sprite = itemUI.image;
+    }
+
+    public Item GetItem()
+    {
+        return itemUI;
+    }
+
+    public void SetToHends()
+    {
+        Inventory.singleton.SetCoseItem(this);
+        Unit.singleton.TakeInHends(Inventory.singleton.GetItem(itemUI.nameID));        
+    }
+
+    public void SetToInvent()
+    {
+        if(Inventory.singleton.GetcoseItem() == null)
+        {
+            Inventory.singleton.DisaibleWeapon();
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+
+        }
+
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            
+        }
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        Inventory.singleton.PutItem(this);
+        transform.SetParent(transform.parent.parent);
+        canvasGroup.blocksRaycasts = false;
+        
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if(!eventData.pointerEnter)
+        {
+            SetToInvent();
+            Inventory.singleton.RemoveItem(this);
+        }
+        canvasGroup.blocksRaycasts = true;
+    }
+}

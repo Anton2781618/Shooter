@@ -4,6 +4,11 @@ using UnityEngine;
 
 public abstract class MedicalKit : MonoBehaviour, Iholding
 {
+    public void Hide()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Sway()
     {
         throw new System.NotImplementedException();

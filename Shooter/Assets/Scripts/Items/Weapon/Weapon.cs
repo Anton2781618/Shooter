@@ -78,9 +78,20 @@ public abstract class Weapon : MonoBehaviour, Iholding, IFirearms
         
         if(Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 100f))
         {
-            GameObject HitParticleEffect = Instantiate(Bullethols.gameObject, hit.point,
-            
-            Quaternion.FromToRotation(Vector3.forward, hit.normal));
+            if(hit.transform.GetComponent<Zombie>())
+            {
+                Zombie zombie = hit.transform.GetComponent<Zombie>();
+                
+                Instantiate(zombie.Bullethols.gameObject,
+                hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                
+                zombie.GetHit();
+            }
+            else
+            {
+                Instantiate(Bullethols.gameObject, hit.point,
+                Quaternion.FromToRotation(Vector3.forward, hit.normal));
+            }
         }
     }
     
@@ -130,5 +141,10 @@ public abstract class Weapon : MonoBehaviour, Iholding, IFirearms
     public void Sway()
     {
         weaponSway.MoveWeapon();
+    }
+
+    public void Hide()
+    {
+        animator.CrossFadeInFixedTime("Hide", 0.01f);
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using TMPro;
 
 public class GameManagerNew : MonoBehaviour
 {
-    [SerializeField] Text textLastMessage; 
-    [SerializeField] InputField textMessageField;
+    [SerializeField] private TextMeshProUGUI textLastMessage; 
+    [SerializeField] private InputField textMessageField;
 
     private PhotonView photonView;
 

@@ -1,16 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] private Camera cameraMain;
     [SerializeField] private Unit unit;
     [SerializeField] private bool cursorIsLock;
+    [SerializeField] private PhotonView photon;
     private bool inventIsOopen;
 
     void Update()
     {
-        Controlling();
+        if(photon.IsMine)
+        {
+            Controlling();
+        }
+        else
+        {
+            cameraMain.enabled = false;
+        }
     }
 
     private void Start() 

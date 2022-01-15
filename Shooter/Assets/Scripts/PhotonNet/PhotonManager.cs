@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
@@ -12,14 +13,22 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [SerializeField] private InputField roomName;
     [SerializeField] private ListItems itemPrefab;
     [SerializeField] private Transform content;
+    [SerializeField] private Transform spawnPoint;
 
     List<RoomInfo> allRoomInfo = new List<RoomInfo>();
+    private GameObject player;
+    [SerializeField] private GameObject playerPref;
 
     void Start()
     {
         nicName = Random.Range(1, 500).ToString();
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.ConnectToRegion(region);
+
+        if(SceneManager.GetActiveScene().name == "FPS")
+        {
+            player = PhotonNetwork.Instantiate(playerPref.name, spawnPoint.position, Quaternion.identity);
+        }
     }
 
     //при конекте к мастер серверу подключаемся к лобби
@@ -43,7 +52,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if(!PhotonNetwork.IsConnected)return;
 
         if(PhotonNetwork.NickName == "")PhotonNetwork.NickName = "User";
-        
+
         RoomOptions roomOptions  = new RoomOptions();
         roomOptions.MaxPlayers = 2;
         PhotonNetwork.CreateRoom(roomName.text, roomOptions, TypedLobby.Default);
@@ -84,7 +93,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     // подключиться к комнате
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("2d");
+        PhotonNetwork.LoadLevel("FPS");
     }
 
     //на кнопку найти комнат со свободным местом и подключиться
@@ -108,6 +117,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //после выхода из комнаты загружаемся в гл меню
     public override void OnLeftRoom()
     {
+        PhotonNetwork.Destroy(player);
         PhotonNetwork.LoadLevel("Главное Меню");
     }
 }

@@ -15,7 +15,7 @@ public class Zombie : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        target = Unit.singleton.transform;
+        // target = fin
     }
 
     void Update()

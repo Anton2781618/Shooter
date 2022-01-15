@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Unit : MonoBehaviour, IUnit
 {
 
-    public static Unit singleton;
+    // public static Unit singleton;
 
     public Iholding Heands { get; set; }
     public IInvent Inventory { get; set; }
     public IUnitMovemant Movemant { get; set ; }
     public int Health { get; set; } = 100;
+    public PhotonView photon;
 
     private void Awake() 
     {
-        singleton = this;
+        // singleton = this;
         Inventory = GetComponent<IInvent>(); 
         Movemant = GetComponent<IUnitMovemant>();         
     }

@@ -7,7 +7,7 @@ using TMPro;
 
 public class GameManagerNew : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textLastMessage; 
+    [SerializeField] private Text textLastMessage; 
     [SerializeField] private InputField textMessageField;
 
     private PhotonView photonView;

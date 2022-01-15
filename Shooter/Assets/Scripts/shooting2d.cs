@@ -17,7 +17,7 @@ public class shooting2d : MonoBehaviour, IFirearms, Iholding
     private void Start() 
     {
         canvas = FindObjectOfType<Canvas>();
-        Unit.singleton.TakeInHends(this);    
+        // Unit.singleton.TakeInHends(this);    
     }
 
     private void shooting()

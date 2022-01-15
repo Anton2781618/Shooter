@@ -6,19 +6,23 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour, IInvent
 {
-    public static Inventory singleton;
+    // public static Inventory singleton;
     [SerializeField] private GameObject[] ogjectsInPlayer;
+    //сам инвентарь
     [SerializeField] private GameObject UIinventoryObject;
 
+    //контейнер для предметов
     [SerializeField] private Transform conteinerForItems;
     [SerializeField] private GameObject ItemUIPrefab;
 
     //установленый итем в верхний слот
     [SerializeField] private ItemUI coseItem;
 
-    private void Awake() 
+    private void Start() 
     {
-        singleton = this;
+        UIinventoryObject = ReferenceKepper.singleton.Inventory.gameObject;
+        conteinerForItems = ReferenceKepper.singleton.content;
+        // singleton = this;
     }
 
     public Iholding GetItem(string nameID)
@@ -73,7 +77,7 @@ public class Inventory : MonoBehaviour, IInvent
     {
         GameObject buffer = Instantiate(ItemUIPrefab, conteinerForItems.transform);
 
-        buffer.GetComponent<ItemUI>().Initialize(newitem);
+        buffer.GetComponent<ItemUI>().Initialize(newitem, this);
         
     }
 

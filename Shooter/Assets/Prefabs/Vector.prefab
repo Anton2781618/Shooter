@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1288,15 +1288,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7212fd8a9f9d68944a86f291872bdeb8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.077
+      value: 6.189
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7212fd8a9f9d68944a86f291872bdeb8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.675
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7212fd8a9f9d68944a86f291872bdeb8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.005
+      value: -7.601
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7212fd8a9f9d68944a86f291872bdeb8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1472,6 +1472,45 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08271384, y: 0.7860635, z: 0.35412407}
   m_Center: {x: 0.12176335, y: -0.019448787, z: -0.02992487}
+--- !u!114 &695178911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419191263797510811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &695178912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419191263797510811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 695178911}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &7521269265933565252
 MonoBehaviour:
   m_ObjectHideFlags: 0

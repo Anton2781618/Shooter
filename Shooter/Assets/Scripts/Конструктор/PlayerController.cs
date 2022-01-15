@@ -18,14 +18,14 @@ public class PlayerController : MonoBehaviour
         {
             Controlling();
         }
-        else
-        {
-            cameraMain.enabled = false;
-        }
     }
 
     private void Start() 
     {
+        if(!photon.IsMine)
+        {
+            cameraMain.enabled = false;
+        }
         if(cursorIsLock)
         {
             Cursor.lockState = CursorLockMode.Locked;    

@@ -12,6 +12,9 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginD
     private RectTransform rectTransform;
     private Transform conent;
 
+    public Unit unitt;
+    public Inventory inventory;
+
     private void Awake() 
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -19,10 +22,13 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginD
         conent = transform.parent;
     }
 
-    public void Initialize(Item item)
+    public void Initialize(Item item, Inventory invent)
     {
         itemUI = item;
         transform.GetComponent<Image>().sprite = itemUI.image;
+
+        inventory = invent;
+        unitt = inventory.transform.GetComponent<Unit>();
     }
 
     public Item GetItem()
@@ -32,15 +38,16 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginD
 
     public void SetToHends()
     {
-        Inventory.singleton.SetCoseItem(this);
-        Unit.singleton.TakeInHends(Inventory.singleton.GetItem(itemUI.nameID));        
+        if(!unitt.photon.IsMine)return; 
+        inventory.SetCoseItem(this);
+        unitt.TakeInHends(inventory.GetItem(itemUI.nameID));        
     }
 
     public void SetToInvent()
     {
-        if(Inventory.singleton.GetcoseItem() == null)
+        if(inventory.GetcoseItem() == null)
         {
-            Inventory.singleton.DisaibleWeapon();
+            inventory.DisaibleWeapon();
         }
     }
 
@@ -59,7 +66,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Inventory.singleton.PutItem(this);
+        inventory.PutItem(this);
         transform.SetParent(transform.parent.parent);
         canvasGroup.blocksRaycasts = false;
         
@@ -75,7 +82,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IDragHandler, IBeginD
         if(!eventData.pointerEnter)
         {
             SetToInvent();
-            Inventory.singleton.RemoveItem(this);
+            inventory.RemoveItem(this);
         }
         canvasGroup.blocksRaycasts = true;
     }

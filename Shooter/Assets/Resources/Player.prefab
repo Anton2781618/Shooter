@@ -387,8 +387,8 @@ GameObject:
   - component: {fileID: 7566542915011414341}
   - component: {fileID: 7566542915011414347}
   - component: {fileID: 7566542915011414340}
-  - component: {fileID: -467747317999663768}
   - component: {fileID: -8765343036737927970}
+  - component: {fileID: -467747317999663768}
   - component: {fileID: -5951739416813127018}
   m_Layer: 0
   m_Name: Player
@@ -547,33 +547,6 @@ MonoBehaviour:
   conteinerForItems: {fileID: 0}
   ItemUIPrefab: {fileID: 5812242319534658817, guid: e01df05406c8a3041800b4f4c5037564, type: 3}
   coseItem: {fileID: 0}
---- !u!114 &-467747317999663768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7566542915011414348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 7566542915011414343}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
 --- !u!114 &-8765343036737927970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,6 +625,34 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &-467747317999663768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7566542915011414348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: -8765343036737927970}
+  - {fileID: -5951739416813127018}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &-5951739416813127018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,6 +668,7 @@ MonoBehaviour:
   playerCamera: {fileID: 3595502108607346520}
   playerControlSkripts:
   - {fileID: 7566542915011414341}
+  playerHealth: 100
 --- !u!1 &7566542915014872349
 GameObject:
   m_ObjectHideFlags: 0

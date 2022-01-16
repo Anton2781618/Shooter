@@ -785,9 +785,37 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7408167592979673961, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408167592979673970, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1335234411}
+    - target: {fileID: 7408167592979673972, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
+      propertyPath: photon
+      value: 
+      objectReference: {fileID: 1929990011}
+    - target: {fileID: 7408167592979673973, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
+      propertyPath: photon
+      value: 
+      objectReference: {fileID: 1929990011}
+    - target: {fileID: 7408167592979673973, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
+      propertyPath: cameraMain
+      value: 
+      objectReference: {fileID: 1823688466}
+    - target: {fileID: 7408167592979673975, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1823688466}
     - target: {fileID: 7408167592979673982, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
       propertyPath: m_Name
       value: Player2d
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899747690838135169, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
@@ -1141,7 +1169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isZombie: 0
-  StartToAwake: 0
+  StartToAwake: 1
   spawnPoint:
   - {fileID: 792701079}
   - {fileID: 549204191}
@@ -1822,6 +1850,17 @@ RectTransform:
   m_AnchoredPosition: {x: -1371, y: 1473}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1929990011 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7408167592979673961, guid: ff2b617e2789f9940b0d16fba8adcc29, type: 3}
+  m_PrefabInstance: {fileID: 950478366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1936255600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,7 +1922,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972537490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de49603ca6b705846be8a92407f4e6d9, type: 3}
   m_Name: 
@@ -1938,7 +1977,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972537490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 842af31097a25414fae889ff7df24e7d, type: 3}
   m_Name: 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//класс представляет из себя стстему передвижения
 public class UnitMovemant2D : MonoBehaviour, IUnitMovemant
 {
     public bool OnOffLook { get; set; }

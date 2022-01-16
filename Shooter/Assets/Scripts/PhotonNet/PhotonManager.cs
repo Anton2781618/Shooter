@@ -19,7 +19,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private GameObject player;
     [SerializeField] private GameObject playerPref;
 
-    void Start()
+    private void Start()
     {
         nicName = Random.Range(1, 500).ToString();
         PhotonNetwork.ConnectUsingSettings();

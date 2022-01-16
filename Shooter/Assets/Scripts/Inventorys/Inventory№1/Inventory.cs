@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour, IInvent
 {
-    // public static Inventory singleton;
     [SerializeField] private GameObject[] ogjectsInPlayer;
     //сам инвентарь
     [SerializeField] private GameObject UIinventoryObject;
@@ -22,7 +21,6 @@ public class Inventory : MonoBehaviour, IInvent
     {
         UIinventoryObject = ReferenceKepper.singleton.Inventory.gameObject;
         conteinerForItems = ReferenceKepper.singleton.content;
-        // singleton = this;
     }
 
     public Iholding GetItem(string nameID)

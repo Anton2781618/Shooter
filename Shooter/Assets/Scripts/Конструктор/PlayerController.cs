@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             if(unit.Inventory != null)
             {
-                // Cursor.lockState = unit.Inventory.OpenCloseInventory() ? CursorLockMode.None : CursorLockMode.Locked;
                 inventIsOopen = unit.Inventory.OpenCloseInventory() ? true : false;
                 Cursor.lockState = inventIsOopen ? CursorLockMode.None : CursorLockMode.Locked;
 
@@ -60,11 +59,11 @@ public class PlayerController : MonoBehaviour
         {
             if(unit.Inventory != null) unit.Inventory.CheckRay();
         }  
-
         if(unit.Heands == null || inventIsOopen) return;
-
+        
         if(Input.GetKey(KeyCode.Mouse0))
         {
+            
             unit.Heands.Use();
         }
 

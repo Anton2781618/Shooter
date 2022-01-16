@@ -626,9 +626,9 @@ GameObject:
   - component: {fileID: 7566542915011414344}
   - component: {fileID: 7566542915011414345}
   - component: {fileID: 7566542915011414346}
-  - component: {fileID: 7566542915011414342}
   - component: {fileID: 7566542915011414341}
   - component: {fileID: 7566542915011414347}
+  - component: {fileID: 7566542915011414342}
   - component: {fileID: 7566542915011414340}
   - component: {fileID: -8765343036737927970}
   - component: {fileID: 5939685585307800893}
@@ -723,28 +723,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7566542915011414342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7566542915011414348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f2fa5cfd7fe8864fa791538d9222c66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7566542915011414346}
-  mouseLook: {fileID: 3595502108607346519}
-  speed: 5
-  gravity: -20
-  jumpHeight: 2
-  groundCheck: {fileID: 7566542915014872348}
-  groundDistance: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &7566542915011414341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,6 +752,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photon: {fileID: 5939685585307800893}
+--- !u!114 &7566542915011414342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7566542915011414348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2fa5cfd7fe8864fa791538d9222c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 7566542915011414346}
+  mouseLook: {fileID: 3595502108607346519}
+  speed: 5
+  gravity: -20
+  jumpHeight: 2
+  groundCheck: {fileID: 7566542915014872348}
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &7566542915011414340
 MonoBehaviour:
   m_ObjectHideFlags: 0

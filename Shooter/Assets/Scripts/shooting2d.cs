@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//класс поведение выстрелами
 public class shooting2d : MonoBehaviour, IFirearms, Iholding
 {
     public Transform firePoint;
@@ -17,7 +18,8 @@ public class shooting2d : MonoBehaviour, IFirearms, Iholding
     private void Start() 
     {
         canvas = FindObjectOfType<Canvas>();
-        // Unit.singleton.TakeInHends(this);    
+        Unit unit = FindObjectOfType<Unit>();
+        unit.TakeInHends(this);
     }
 
     private void shooting()
@@ -30,7 +32,8 @@ public class shooting2d : MonoBehaviour, IFirearms, Iholding
 
     public void Fire()
     {
-         if(Time.time < nextTimeToFire) return;
+        
+        if(Time.time < nextTimeToFire) return;
 
         shooting();
         nextTimeToFire = Time.time + 1f / fireRate;

@@ -6,8 +6,6 @@ using UnityEngine;
 public class Unit : MonoBehaviour, IUnit
 {
 
-    // public static Unit singleton;
-
     public Iholding Heands { get; set; }
     public IInvent Inventory { get; set; }
     public IUnitMovemant Movemant { get; set ; }
@@ -15,8 +13,7 @@ public class Unit : MonoBehaviour, IUnit
     public PhotonView photon;
 
     private void Awake() 
-    {
-        // singleton = this;
+    {        
         Inventory = GetComponent<IInvent>(); 
         Movemant = GetComponent<IUnitMovemant>();         
     }

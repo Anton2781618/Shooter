@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//класс представляет из себя поведение батов
 public class Zombie : MonoBehaviour
 {
     [SerializeField] private Transform target;
@@ -15,7 +16,7 @@ public class Zombie : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        // target = fin
+        target = FindObjectOfType<Unit>().transform;
     }
 
     void Update()
